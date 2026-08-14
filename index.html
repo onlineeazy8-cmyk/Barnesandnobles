@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barnes & Noble – Gift Card Reward</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      background: #f5f0e8;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    /* TOP BANNER */
+    .banner {
+      background: #2e7d32;
+      color: #fff;
+      text-align: center;
+      padding: 11px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 14px 18px 20px;
+    }
+
+    /* HEADER */
+    .brand-name {
+      text-align: center;
+      font-size: 28px;
+      font-weight: 900;
+      color: #2e7d32;
+      letter-spacing: 1px;
+      font-family: 'Georgia', serif;
+      margin-bottom: 4px;
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #555;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .headline {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1.3;
+      margin-bottom: 12px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .headline .highlight {
+      color: #2e7d32;
+    }
+
+    /* STEPS */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #fff;
+      border: 1.5px solid #e0ddd5;
+      border-radius: 14px;
+      padding: 10px 14px;
+    }
+
+    .step-num {
+      min-width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #2e7d32;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .step-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a1a;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    /* CTA BUTTON */
+    .cta-btn {
+      display: block;
+      width: 100%;
+      background: #2e7d32;
+      color: #fff;
+      text-align: center;
+      padding: 13px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      letter-spacing: 0.3px;
+      transition: background 0.18s, transform 0.1s;
+      margin-bottom: 8px;
+    }
+    .cta-btn:hover { background: #1b5e20; }
+    .cta-btn:active { transform: scale(0.98); }
+
+    /* SECURITY NOTE */
+    .security-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      justify-content: center;
+      text-align: center;
+      font-size: 11px;
+      color: #888;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .security-note svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1.5px solid #ddd;
+      margin: 0 0 10px;
+    }
+
+    /* FAQ */
+    .faq-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1a1a1a;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin-bottom: 10px;
+    }
+
+    .faq-list { margin-bottom: 10px; }
+
+    .faq-item {
+      border-bottom: 1.5px solid #ddd;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 9px 0;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a1a1a;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-chevron {
+      font-size: 18px;
+      color: #555;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 0 8px;
+      font-size: 12px;
+      color: #555;
+      line-height: 1.6;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    /* RATING */
+    .rating-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 8px 0 4px;
+    }
+
+    .rating-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .stars {
+      display: flex;
+      gap: 3px;
+    }
+
+    .star {
+      width: 22px;
+      height: 22px;
+      background: #2e7d32;
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .star svg { width: 18px; height: 18px; }
+
+    .rating-score {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1a1a1a;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BANNER -->
+  <div class="banner">Trusted by 3,500+ US Students &middot; Already Claimed</div>
+
+  <!-- MAIN -->
+  <div class="container">
+
+    <!-- BRAND HEADER -->
+    <div class="brand-name">BARNES &amp; NOBLE</div>
+    <!-- HEADLINE -->
+    <div class="headline">
+      Up to <span class="highlight">$750 Barnes &amp; Noble Gift Card</span> for Your Feedback!<br>
+      <span style="font-size:13px;font-weight:600;color:#555;">Complete a quick registration to unlock your Barnes &amp; Noble gift card.</span>
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text">Click "Claim Now"</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text">Enter your email and basic info</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text">Complete 4–5 sponsored deals</div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text">Enjoy your $750 Barnes &amp; Noble gift card!</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <a class="cta-btn" href="https://giftclick.org/aff_c?offer_id=4348&aff_id=186911" target="_blank" rel="noopener">Claim Now</a>
+
+    <!-- SECURITY NOTE -->
+    <div class="security-note">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/>
+      </svg>
+      <span>Safe, secure &amp; free to enter. Completion of sponsored deals required.</span>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- FAQ -->
+    <div class="faq-title">Frequently Asked Questions</div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How long do the deals take?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">Most deals take between 5 and 15 minutes to complete. Simpler sign-up offers can take as little as 2 minutes each.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What are deals?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">Deals are sponsored offers from our advertising partners — things like signing up for a free trial, completing a survey, or downloading an app. They're all free or low-cost to complete.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How many deals do I have to do?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">You'll need to complete 4–5 sponsored deals to qualify for your $750 Barnes &amp; Noble gift card. Each deal clearly states its requirements before you start.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          When will I receive my gift card?
+          <span class="faq-chevron">&#8964;</span>
+        </button>
+        <div class="faq-answer">Gift cards are typically processed and delivered within 3–5 business days after all required deals have been verified and approved.</div>
+      </div>
+
+    </div>
+
+    <!-- RATING -->
+    <div class="rating-row">
+      <span class="rating-label">Excellent</span>
+      <div class="stars">
+        <div class="star"><svg viewBox="0 0 24 24" fill="#fff" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="star"><svg viewBox="0 0 24 24" fill="#fff" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="star"><svg viewBox="0 0 24 24" fill="#fff" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="star"><svg viewBox="0 0 24 24" fill="#fff" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <div class="star"><svg viewBox="0 0 24 24" fill="#fff" width="14" height="14"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+      </div>
+      <span class="rating-score">4.9 / 5</span>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>
